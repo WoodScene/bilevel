@@ -1,0 +1,43 @@
+nohup: ignoring input
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please submit your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+CUDA SETUP: CUDA runtime path found: /home/yujie/anaconda3/envs/bilevel/lib/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 8.6
+CUDA SETUP: Detected CUDA version 113
+CUDA SETUP: Loading binary /home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/bitsandbytes/libbitsandbytes_cuda113.so...
+base_model: /data_8T2/yujie/Backbones/t5large
+max_new_tokens: 128
+dataset_id: 1
+method_name: vanilla
+model_name: t5largelora
+lora_weights: ./checkpoint_files/t5largelora_vanilla_dataset_id_1/14-yahoo
+output_dir: ./output/t5largelora_vanilla_dataset_id_1_avgPerf
+Traceback (most recent call last):
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/peft/utils/config.py", line 106, in from_pretrained
+    config_file = hf_hub_download(pretrained_model_name_or_path, CONFIG_NAME, subfolder=subfolder)
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/huggingface_hub/utils/_validators.py", line 112, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/huggingface_hub/utils/_validators.py", line 161, in validate_repo_id
+    "Repo id must be in the form 'repo_name' or 'namespace/repo_name':"
+huggingface_hub.utils._validators.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': './checkpoint_files/t5largelora_vanilla_dataset_id_1/14-yahoo'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "generate_avgPerf_t5lora.py", line 185, in <module>
+    fire.Fire(main)
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/fire/core.py", line 480, in _Fire
+    target=component.__name__)
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "generate_avgPerf_t5lora.py", line 96, in main
+    torch_dtype=torch.float16,
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/peft/peft_model.py", line 164, in from_pretrained
+    PeftConfig.from_pretrained(model_id, subfolder=kwargs.get("subfolder", None)).peft_type
+  File "/home/yujie/anaconda3/envs/bilevel/lib/python3.7/site-packages/peft/utils/config.py", line 108, in from_pretrained
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{pretrained_model_name_or_path}'")
+ValueError: Can't find 'adapter_config.json' at './checkpoint_files/t5largelora_vanilla_dataset_id_1/14-yahoo'

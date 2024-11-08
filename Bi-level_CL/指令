@@ -1,0 +1,19 @@
+先在long sequence benchmark 上试试motivation的效果
+tmux new -s bilevel
+tmux attach -t bilevel
+tmux detach
+tmux kill-session -t bilevel
+
+# llama 的虚拟环境是 ContinualDST ，里面的trainer修改了
+
+# 最新的虚拟环境是bilevel，里面的trainer大改了
+# training_args.py 也新增了几个参数
+
+# vanilla training
+nohup ./shell/run_train_vanilla_T5largelora.sh >> ./nohup/nohup_train_vanilla_T5largelora.out 2>&1 & 
+nohup ./shell/run_test_vanilla_t5largelora_avgPer.sh >> ./nohup/nohup_test_vanilla_t5largelora_avgPer.out 2>&1 & 
+nohup ./shell/run_test_vanilla_t5largelora_bwt.sh >> ./nohup/nohup_test_vanilla_t5largelora_bwt.out 2>&1 & 
+#nohup ./shell/run_test_vanilla_t5largelora_fwt.sh >> ./nohup/nohup_test_vanilla_t5largelora_fwt.out 2>&1 & 
+
+# bilevel training
+nohup ./shell/run_train_bilevel_T5largelora.sh >> ./nohup/nohup_train_bilevel_T5largelora.out 2>&1 & 
