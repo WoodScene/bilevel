@@ -17,3 +17,15 @@ nohup ./shell/run_test_vanilla_t5largelora_bwt.sh >> ./nohup/nohup_test_vanilla_
 
 # bilevel training
 nohup ./shell/run_train_bilevel_T5largelora.sh >> ./nohup/nohup_train_bilevel_T5largelora.out 2>&1 & 
+
+# flant5xl的结果
+nohup ./shell/run_train_vanilla_T5xllora.sh >> ./nohup/nohup_train_vanilla_T5xllora.out 2>&1 & 
+
+# llama7b的结果
+nohup ./shell/run_train_vanilla_llama7b.sh >> ./nohup/nohup_train_vanilla_llama7b.out 2>&1 & 
+nohup ./shell/run_test_vanilla_llama7b_avgPer2.sh >> ./nohup/nohup_test_vanilla_llama7b_avgPer2.out 2>&1 & 
+nohup ./shell/run_test_vanilla_llama7b_bwt.sh >> ./nohup/nohup_test_vanilla_llama7b_bwt.out 2>&1 & 
+
+# llama7B结果 multi task training
+nohup ./shell/run_train_multitask_llama.sh >> ./nohup/nohup_train_multitask_llama7b.out 2>&1 & 
+nohup ./shell/run_test_multitask_llama_avgPer.sh >> ./nohup/nohup_test_multitask_llama7b_avgPer.out 2>&1 & 
